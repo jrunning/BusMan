@@ -14,9 +14,11 @@ function BusMan(trips, beginTrips) {
 }
 
 BusMan.prototype.addSelect = function($select) {
+  var lastSelect;
+
   // remove all selects after the one that was changed
-  while($('select').last()[0] != $select[0]) {
-    $('select').last().remove();
+  while((lastSelect = $('select').last())[0] != $select[0]) {
+    lastSelect.remove();
   }
 
   if($select.val() != "") {
@@ -41,8 +43,7 @@ BusMan.prototype.makeSelect = function(ids) {
 
 BusMan.prototype.makeOption = function(trip, idx) {
   return $('<option/>',
-      { text  : trip.departsAt + ' - ' +
-                trip.name +
+      { text  : trip.departsAt + ' - ' + trip.name +
                 ' (' + trip.arrivesAt + ')'
       , value : idx
       }
