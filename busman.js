@@ -10,25 +10,20 @@ function BusMan(trips, beginTrips) {
     self.addSelect($(e.target));
   });
 
-  this.addSelect();
+  $('body').append(this.makeSelect(this.beginTrips));
 }
 
 BusMan.prototype.addSelect = function($select) {
-  if($select == undefined && $.isArray(this.beginTrips)) {
-    $('body').append(this.makeSelect(this.beginTrips));
-  } else {
-    var self = this;
+  // remove all selects after the one that was changed
+  while($('select').last()[0] != $select[0]) {
+    $('select').last().remove();
+  }
 
-    while($('select').last()[0] != $select[0]) {
-      $('select').last().remove();
-    }
+  if($select.val() != "") {
+    connections = this.trips[$select.val()].connections
 
-    if($select.val() != "") {
-      connections = this.trips[$select.val()].connections
-
-      if($.isArray(connections) && connections.length > 0) {
-        $select.after(this.makeSelect(connections));
-      }
+    if($.isArray(connections) && connections.length > 0) {
+      $select.after(this.makeSelect(connections));
     }
   }
 };
