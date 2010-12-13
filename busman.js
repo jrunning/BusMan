@@ -33,15 +33,15 @@ BusMan.prototype.addSelect = function($select) {
 
 BusMan.prototype.makeSelect = function(ids, prevId) {
   var self = this
-  ,   select = $('<select><option value="">Choose one</option></select>');
+  ,   $select = $('<select><option value="">Choose one</option></select>');
 
   $.each(ids, function(idx, id) {
-    select.append(
+    $select.append(
       self.makeOption(self.trips[id], id, id == prevId)
     );
   });
 
-  return select;
+  return $select;
 };
 
 BusMan.prototype.makeOption = function(trip, id, selected) {
