@@ -49,7 +49,7 @@ BusMan.prototype.makeOption = function(trip, id, selected) {
       { text      : trip.departsAt + ' - ' + trip.name +
                     ' (' + trip.arrivesAt + ')'
       , value     : id
-      , selected  : selected
+      // , selected  : selected
       }
     );
 }
